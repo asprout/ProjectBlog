@@ -10,15 +10,15 @@ def index():
 #and have a form where one can create a new blog.
 #Names should be unique, and be linked to a blog index.
 
-@app.route('/BLOGIDHERE') 
-def blogindex():
+@app.route('/<blogid>') 
+def blogindex(blogid):
     pass
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-@app.route('/POSTIDHERE')
-def posts():
+@app.route('/<postid>')
+def posts(postid):
     pass
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
