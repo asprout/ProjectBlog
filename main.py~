@@ -1,0 +1,10 @@
+## from ___ import ___
+from bs4 import BeautifulSoup
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+@app.route('/')
+#Index page; will list title of all BLOGS (rather than posts) and have a form where one can enter a new title and blog. Titles should be unique, and be linked to a blog index.
+
+
+#Blog index
