@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 @app.route('/')
 def index():
-    pass
+    return render_template("home.html")
 #Index page; will list name of all BLOGS (rather than posts)
 #and have a form where one can create a new blog.
 #Names should be unique, and be linked to a blog index.
@@ -17,8 +17,8 @@ def blogindex(blogid):
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-@app.route('/<postid>')
-def posts(postid):
+@app.route('/<blogid>/posts/<postid>')
+def posts(blogid, postid):
     pass
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
