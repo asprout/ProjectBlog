@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+    <title>Blog</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+	<h1>Blog</h1>
+      </div>
+    </div>
+    <div class="list-group">
+      {% for blog in blogs %}
+        <a href="#" class="list-group-item">{{ blog.name }}</a>
+      {% endfor %}
+    </div>
+    
+  </body>
+    
