@@ -17,14 +17,8 @@ conn.commit()
 
 @app.route('/')
 def index():
-<<<<<<< HEAD
-   
-    blogs = c.execute("SELECT name FROM blogs")
-    print blogs
+    
     return render_template("home.html", blogs=blogs)
-=======
-    return render_template("home.html")
->>>>>>> ab1fe80723d1a882f9ca5cdd37b6f1f340dbc1d3
 #Index page; will list name of all BLOGS (rather than posts)
 #and have a form where one can create a new blog.
 #Names should be unique, and be linked to a blog index.
