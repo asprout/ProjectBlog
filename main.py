@@ -2,22 +2,21 @@
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 import sqlite3
-
+import populate
+import os.path
 
 app = Flask(__name__)
 
-conn = sqlite3.connect("blog.db")
-c = conn.cursor()
-c.execute("create table blogs(name text)")
-c.execute("create table posts(title text, content text, author text, blog_id integer)")
-c.execute("create table comments(content text, blog integer, author text)")
-conn.commit()
-c.execute("INSERT INTO blogs VALUES('Test Blog')")
-conn.commit()
 
 @app.route('/')
 def index():
-    
+    if not os.path.isfile("blog.db"):
+        populate.create_db()
+
+    populate.add_blog("test blog")
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    blogs = c.execute("SELECT name FROM blogs")
     return render_template("home.html", blogs=blogs)
 #Index page; will list name of all BLOGS (rather than posts)
 #and have a form where one can create a new blog.
