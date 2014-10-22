@@ -6,44 +6,27 @@ import populate
 import os.path
 
 app = Flask(__name__)
-
-<<<<<<< HEAD
-
+#Index page; will list name of all POSTS
+#and have a form where one can create a new post.
 @app.route('/')
 def index():
     if not os.path.isfile("blog.db"):
         populate.create_db()
 
-    populate.add_blog("test blog")
-    conn = sqlite3.connect("blog.db")
-    c = conn.cursor()
-    blogs = c.execute("SELECT name FROM blogs")
+    blogs = populate.blog_list()
     return render_template("home.html", blogs=blogs)
-=======
-conn = sqlite3.connect("blog.db")
-c = conn.cursor()
-c.execute("INSERT INTO blogs VALUES('Test Blog')")
-conn.commit()
 
-@app.route('/')
-def index():
+
+##@app.route('/<blogid>') 
+##def blogindex(blogid):
     
-    return render_template("home.html")
->>>>>>> 6e571cc1396380d5bca654c2fc060367cf737be9
-#Index page; will list name of all BLOGS (rather than posts)
-#and have a form where one can create a new blog.
-#Names should be unique, and be linked to a blog index.
-
-@app.route('/<blogid>') 
-def blogindex(blogid):
-    pass
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-@app.route('/<blogid>/posts/<postid>')
-def posts(blogid, postid):
-    pass
+##@app.route('/<blogid>/posts/<postid>')
+##def posts(blogid, postid):
+    
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
 #a way to get back to the main page.
@@ -54,4 +37,4 @@ def page_not_found(error):
 
 if __name__ == "__main__":
     app.debug=True
-    app.run(port=5025)
+    app.run()
