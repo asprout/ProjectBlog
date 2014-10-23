@@ -12,8 +12,15 @@
     <h2>By {{ post_dict['author'] }}</h2>
     <p>{{ post_dict['content'] }}</p>
   </div>
+  <form role="form" method="POST">
+    <div class="form-group">
+      <h3>Add Comment</h3>
+      <p><input type="text" name="author" placeholder="Author" class="form-control"></p>
+      <p><input type="text" name="comment" placeholder="Comment" class="form-control"></p>
+      <input type="submit" name="b" value="Submit" class="btn btn-default">
+    </div>
+  </form>
 </div>
-
 
 
 <hr>
