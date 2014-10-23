@@ -5,10 +5,33 @@ def create_db():
     c = conn.cursor()
     c.execute("create table blog (name text, blog_id integer)")
     c.execute("create table post(title text, content text, author text, blog_id integer, post_id integer)")
-    c.execute("create table comment(content text, post_id integer, author text)")
+    c.execute("create table comment(content text, post_id integer, author text, comment_id integer)")
     conn.commit()
     conn.close()
-    
+
+def add_comment(author, content, postid):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    currentMax = c.execute("select max(comment_id) from comment").fetchone()
+    if currentMax[0] == None:
+        newid = 1
+    else:
+       newid = int(currentMax[0]) + 1
+       command = """
+       INSERT INTO comment(text, post_id, author, comment_id)
+       VALUES("""+ content + "'," + str(postid) + "'," + author + "'," + str(newid) + ")"
+       c.execute(command)
+       conn.commit()
+       conn.close()
+
+def comm_list(postid):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    comments = []
+    for row in c.execute("SELECT author, content FROM comment WHERE post_id==" + postid):
+        comments.append([row[0],row[1]])
+    return comments
+
 def add_blog(name):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()

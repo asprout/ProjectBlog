@@ -40,10 +40,19 @@ def blogindex(blogid):
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-@app.route('/<blogid>/viewpost/<postid>')
+@app.route('/<blogid>/viewpost/<postid>', methods=["GET","POST"])
 def posts(postid, blogid):
     post_dict = populate.get_post(postid, blogid)
-    return render_template("post.html", post_dict=post_dict)
+    comments = populate.comm_list(postid)
+    if request.method=="GET":
+        return render_template("post.html", post_dict=post_dict, comments=comments)
+    else:
+        if request.form['b']=="Submit":
+            comment_author = request.form['author']
+            comment_content = request.form['content']
+            populate.add_comment(comment_author, comment_content, postid)
+            comments = populate.comm_list(postid)
+            return render_template("post.html", post_dict=post_dict, comments=comments)
     
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
