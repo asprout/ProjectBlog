@@ -27,8 +27,9 @@ def index():
 def blogindex(blogid):
     blog_name = populate.get_blog(blogid)
     postlist = populate.post_list(blogid)
+    alert="False"
     if request.method=="GET":
-        return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name)
+        return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name, alert=alert)
     else:
         if request.form['b']=="Submit":
             post_title=request.form["newposttitle"]
@@ -36,7 +37,8 @@ def blogindex(blogid):
             post_content=request.form["newpostcontent"]
             populate.add_post(post_title, post_content, post_name, blogid)
             postlist = populate.post_list(blogid)
-            return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name)
+            alert=True
+            return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name, alert=alert)
 
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.
