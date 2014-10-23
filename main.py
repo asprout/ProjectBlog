@@ -27,7 +27,7 @@ def blogindex(blogid):
 #Titles should be unique, and should redirect user to a blog post page.
 
 ##@app.route('/viewpost/<postid>')
-##def posts(blogid, postid):
+##def posts(postid):
     
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
