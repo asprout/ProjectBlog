@@ -50,3 +50,17 @@ def post_list(blogid):
     for row in c.execute("select title,  author, post_id from post where blog_id==" + str(blogid)):
         posts.append([row[0],row[1],row[2]])
     return posts
+
+def get_post(postid, blogid):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    post_dict = {}
+    command = """
+    SELECT title, content, author
+    FROM post
+    WHERE blog_id==""" + str(blogid) + """ and post_id==""" + str(postid)
+    for post in c.execute(command):
+        post_dict['title'] = post[0]
+        post_dict['author'] = post[2]
+        post_dict['content'] = post[1]
+    return post_dict

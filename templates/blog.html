@@ -41,7 +41,8 @@
       <div class="row marketing">
         <div class="col-lg-6">
 	  {% for post in postlist %}
-	    <h4>Post  {{loop.index}} by {{post[1]}} <a href="/viewpost/{{post[2]}}">{{ post[0] }}</a></h4>
+	    <h4>Post  {{loop.index}} by {{post[1]}} <a href="{{ blogid
+        }}/viewpost/{{post[2]}}">{{ post[0] }}</a></h4>
 	  {% endfor %}
 
       <div class="footer">

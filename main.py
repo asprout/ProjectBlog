@@ -12,7 +12,6 @@ app = Flask(__name__)
 def index():
     if not os.path.isfile("blog.db"):
         populate.create_db()
-
     blogs = populate.blog_list()
     return render_template("home.html", blogs=blogs)
 
@@ -20,14 +19,16 @@ def index():
 @app.route('/<blogid>') 
 def blogindex(blogid):
     postlist = populate.post_list(blogid)
-    return render_template("blog.html", postlist=postlist)
-    
+    return render_template("blog.html", postlist=postlist, blogid=blogid)
+
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-##@app.route('/viewpost/<postid>')
-##def posts(postid):
+@app.route('/<blogid>/viewpost/<postid>')
+def posts(postid, blogid):
+    post_dict = populate.get_post(postid, blogid)
+    return render_template("post.html", post_dict=post_dict)
     
 #Blog post page; will show the title and content of a post in addition to
 #comments. There should be ANOTHER form to add a new comment, and
