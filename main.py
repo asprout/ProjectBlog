@@ -12,14 +12,16 @@ def index():
     if not os.path.isfile("blog.db"):
         populate.create_db()
     blogs = populate.blog_list()
+    alert=False
     if request.method=="GET":
-        return render_template("home.html", blogs=blogs)
+        return render_template("home.html", blogs=blogs, alert=alert)
     else:
         if request.form['b']=="Create":
             blog_title=request.form["newblogtitle"]
             populate.add_blog(blog_title)
             blogs = populate.blog_list()
-            return render_template("home.html", blogs=blogs)
+            alert=True
+            return render_template("home.html", blogs=blogs, alert=alert)
 
 @app.route('/<blogid>', methods=["GET","POST"]) 
 def blogindex(blogid):

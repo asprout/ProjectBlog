@@ -23,7 +23,9 @@
       <div class="header">
         <h3 class="text-muted">Home</h3>
       </div>
-
+      {% if alert %}
+      <div class="alert alert-success" role="alert"> Your blog has been created</div>
+      {% endif %}
       <div class="jumbotron">
         <h1>Create A New Blog</h1>
         <p class="lead">
