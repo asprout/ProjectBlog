@@ -17,8 +17,10 @@ def index():
     return render_template("home.html", blogs=blogs)
 
 
-##@app.route('/<blogid>') 
-##def blogindex(blogid):
+@app.route('/<blogid>') 
+def blogindex(blogid):
+    postlist = populate.post_list(blogid)
+    return render_template("blog.html", postlist=postlist)
     
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.
