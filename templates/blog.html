@@ -29,21 +29,22 @@
         <p class="lead">
 	<form role="form" method="POST">
 	  <div class="form-group">
-	    <input type="text" class="form-control" name="newposttitle" placeholder="Enter Title">
-      <input type="text" class="form-control" name="newpostname" placeholder="Enter Name">
-      <input type="text" class="form-control" name="newpostcontent" placeholder="Enter Content">
+	    <p><input type="text" class="form-control" name="newposttitle" placeholder="Enter Title"></p>
+      <p><input type="text" class="form-control" name="newpostname" placeholder="Enter Name"></p>
+      <p><textarea type="text" class="form-control" name="newpostcontent" placeholder="Enter Content"></textarea></p>
 	  </div>
 	</p>
         <p><input type="submit" class="btn btn-default" name="b" value="Submit"></p>
 	</form>
       </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
+      <h2>Posts</h2>
+      <div class="list-group">
 	  {% for post in postlist %}
-	    <h4>{{loop.index}}. <a href="{{ blogid
-        }}/viewpost/{{post[2]}}">{{ post[0] }}</a> by {{post[1]}}</h4>
+	   <a href="{{ blogid
+        }}/viewpost/{{post[2]}}" class="list-group-item"> {{ post[0]
+        }} by {{post[1]}}</a> 
 	  {% endfor %}
+      </div>
 
       <div class="footer">
         <p>&copy; StuyCS</p>

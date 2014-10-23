@@ -15,15 +15,17 @@
     <h2>By {{ post_dict['author'] }}</h2>
     <p>{{ post_dict['content'] }}</p>
   </div>
+  <h3>Add Comment</h3>
   <form role="form" method="POST">
     <div class="form-group">
-      <h3>Add Comment</h3>
+      
       <p><input type="text" name="author" placeholder="Author" class="form-control"></p>
-      <p><input type="text" name="content" placeholder="Comment" class="form-control"></p>
+      <p><textarea type="text" name="content" placeholder="Comment" class="form-control"></textarea></p>
       <input type="submit" name="b" value="Submit" class="btn btn-default">
     </div>
   </form>
   <h3>Comments</h3>
+  
   {% for comment in comments %}
     <div class="panel panel-info">
       <div class="panel-heading">{{ comment[2] }}</div>

@@ -17,9 +17,8 @@ def add_comment(author, content, postid):
         newid = 1
     else:
        newid = int(currentMax[0]) + 1
-       command = """
-       INSERT INTO comment(text, post_id, author, comment_id)
-       VALUES("""+ content + "'," + str(postid) + "'," + author + "'," + str(newid) + ")"
+       command = "INSERT INTO comment(content, post_id, author, comment_id) VALUES("
+       command += content + "'," + str(postid) + "'," + author + "'," + str(newid) + ")"
        c.execute(command)
        conn.commit()
        conn.close()
