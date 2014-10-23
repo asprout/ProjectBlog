@@ -21,10 +21,20 @@ def index():
             blogs = populate.blog_list()
             return render_template("home.html", blogs=blogs)
 
-@app.route('/<blogid>') 
+@app.route('/<blogid>', methods=["GET","POST"]) 
 def blogindex(blogid):
+    blog_name = populate.get_blog(blogid)
     postlist = populate.post_list(blogid)
-    return render_template("blog.html", postlist=postlist, blogid=blogid)
+    if request.method=="GET":
+        return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name)
+    else:
+        if request.form['b']=="Submit":
+            post_title=request.form["newposttitle"]
+            post_name=request.form["newpostname"]
+            post_content=request.form["newpostcontent"]
+            populate.add_post(post_title, post_content, post_name, blogid)
+            postlist = populate.post_list(blogid)
+            return render_template("blog.html", postlist=postlist, blogid=blogid, blog_name=blog_name)
 
 #Blog index; will list titles of all posts from blog and a form where
 #one can enter new title and post.

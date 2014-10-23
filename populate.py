@@ -21,7 +21,13 @@ def add_blog(name):
     c.execute(command)
     conn.commit()
     conn.close()
-
+def get_blog(blogid):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    command = "SELECT name FROM blog WHERE blog_id==" + blogid
+    for blog in c.execute(command):
+        return blog[0]
+    
 def add_post(title, content, author, blog_id):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
