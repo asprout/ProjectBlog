@@ -26,7 +26,7 @@ def blogindex(blogid):
 #one can enter new title and post.
 #Titles should be unique, and should redirect user to a blog post page.
 
-##@app.route('/<blogid>/posts/<postid>')
+##@app.route('/viewpost/<postid>')
 ##def posts(blogid, postid):
     
 #Blog post page; will show the title and content of a post in addition to
