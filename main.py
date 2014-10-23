@@ -43,6 +43,7 @@ def blogindex(blogid):
 @app.route('/<blogid>/viewpost/<postid>', methods=["GET","POST"])
 def posts(postid, blogid):
     post_dict = populate.get_post(postid, blogid)
+    populate.add_comment("hey", "how", postid)
     comments = populate.comm_list(postid)
     if request.method=="GET":
         return render_template("post.html", post_dict=post_dict, comments=comments)
