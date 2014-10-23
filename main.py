@@ -6,15 +6,20 @@ import populate
 import os.path
 
 app = Flask(__name__)
-#Index page; will list name of all POSTS
-#and have a form where one can create a new post.
-@app.route('/')
+
+@app.route('/', methods=["GET","POST"])
 def index():
     if not os.path.isfile("blog.db"):
         populate.create_db()
     blogs = populate.blog_list()
-    return render_template("home.html", blogs=blogs)
-
+    if request.method=="GET":
+        return render_template("home.html", blogs=blogs)
+    else:
+        if request.form['b']=="Create":
+            blog_title=request.form["newblogtitle"]
+            populate.add_blog(blog_title)
+            blogs = populate.blog_list()
+            return render_template("home.html", blogs=blogs)
 
 @app.route('/<blogid>') 
 def blogindex(blogid):
